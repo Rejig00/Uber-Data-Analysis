@@ -1,0 +1,1 @@
+.bar(index, brooklyn, bar_width, al
