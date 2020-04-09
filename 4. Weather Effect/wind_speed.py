@@ -18,7 +18,7 @@ new_df = pd.pivot_table(df, index=["pickup_dt"], values=['sd'], aggfunc=np.mean)
 # print(min(new_df.dewp))
 
 num_bins = 30
-
+print(new_df.sd)
 plt.hist(new_df.sd, num_bins, density=False, color='b', alpha=0.5, label='Average Snow Depth per day', edgecolor='black', linewidth=1)
 plt.xlabel('Snow Depth (inches)')
 plt.ylabel('Count')

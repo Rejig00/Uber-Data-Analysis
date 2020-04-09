@@ -24,6 +24,7 @@ with open("uber_nyc_enriched.csv", "r") as datafile:
         pickup.append(sum_of_pickup)
         sum_of_pickup = 0
 #=============================================================================================================#
+print(pickup)
 #================================ Plot =======================================================================#
 num_bins = 50
 n, bins, patches = plt.hist(pickup, num_bins, density=False, color='blue', alpha=0.5)

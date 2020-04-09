@@ -22,7 +22,7 @@ for i in enumerate(df["pickup_dt"]):
     all_date.append(modified_date)
 
 # all_date = [datetime.datetime.strptime(i[1], "%Y-%m-%d %H:%M:%S").date() for i in enumerate df["pickup_dt"]]
-df["pickup_dt"] = all_date
+# df["pickup_dt"] = all_date
 new_df = pd.pivot_table(df, index=["pickup_dt", "borough"], values=['pickups'], aggfunc=np.sum)
 #================================ Plot =======================================================================#
 num_bins = 30
