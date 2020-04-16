@@ -6,15 +6,10 @@ filename <- "uber_nyc_enriched.csv"
 df <- read.csv(filename, header = TRUE)
 
 df$pickup_dt <- as.POSIXct(df$pickup_dt)
-# head(df)
 
 pivot <- df %>%
   select(pickup_dt, pickups) %>%
   group_by(pickup_dt)%>%
   summarise(total_pickups = sum(pickups))
-head(pivot)
 
 ggplot(pivot, aes(x=pickup_dt, y=total_pickups))+geom_bar(stat = "identity", fill = "steelblue", col="black") + xlab("Date") + ylab("Number of Pickups") + ggtitle("Pickups per day in New York City")
-
-# timeDatelt <- as.POSIXlt("2015-10-19 10:15") 
-# print(unclass(timeDatelt)$hour)

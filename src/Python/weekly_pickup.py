@@ -6,14 +6,12 @@ import numpy as np
 all_date = []
 #=============================================================================================================#
 df = pd.read_csv("uber_nyc_enriched.csv")
-for row in df.iterrows():
-    row[1]["pickup_dt"] = datetime.datetime.strptime(row[1]["pickup_dt"], "%Y-%m-%d %H:%M:%S")
-    all_date.append(row[1]["pickup_dt"].strftime('%A'))
+df.fillna(value="NA", inplace=True)
+
+for i in enumerate(df["pickup_dt"]):
+    all_date.append(datetime.datetime.strptime(i[1], "%Y-%m-%d %H:%M:%S").date().strftime('%A'))
 
 df["pickup_dt"] = all_date
-# new_df = pd.pivot_table(df, index=["pickup_dt"], values=['pickups'], aggfunc=np.mean)
-# df.plot.box()
-# print(new_df)
 
 query_table = df.query('pickup_dt == ["Sunday"] and borough == ["Manhattan"]')
 sunday = query_table.pickups

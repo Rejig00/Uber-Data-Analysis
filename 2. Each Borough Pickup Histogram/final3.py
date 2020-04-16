@@ -1,12 +1,9 @@
-# import csv
 import pandas as pd
 import datetime
 import matplotlib.pyplot as plt 
 import numpy as np
-import time
 
 all_date = []
-t1 = time.time()
 # modified_date = datetime.datetime.now()
 #=============================================================================================================#
 df = pd.read_csv("uber_nyc_enriched.csv")
@@ -22,7 +19,7 @@ for i in enumerate(df["pickup_dt"]):
     all_date.append(modified_date)
 
 # all_date = [datetime.datetime.strptime(i[1], "%Y-%m-%d %H:%M:%S").date() for i in enumerate df["pickup_dt"]]
-# df["pickup_dt"] = all_date
+df["pickup_dt"] = all_date
 new_df = pd.pivot_table(df, index=["pickup_dt", "borough"], values=['pickups'], aggfunc=np.sum)
 #================================ Plot =======================================================================#
 num_bins = 30
@@ -60,6 +57,4 @@ plt.ylabel('Count')
 plt.title('Histogram of Pickups per day')
 plt.legend()
 plt.tight_layout()
-t2 = time.time()
-print(t2-t1)
 plt.show()
